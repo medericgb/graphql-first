@@ -10,7 +10,7 @@ const resolvers = {
     Query: {
         hello: (parent, args, context, info) => messageHello,
         users: () => users,
-        user: (parent, {id}) => users.find(user => user.id == id)
+        user: (parent, { id }) => users.find(user => user.id == id)
     },
     Mutation: {
         createUser: (parent, { id, name, email, age }) => {
