@@ -1,18 +1,16 @@
-let users = [
-    {id: 1, name: "Jean", email: "jean@mail.com", age: 17},
-    {id: 2, name: "Rose", email: "rose@mail.com", age: 31},
-    {id: 3, name: "Mario", email: "mario@mail.com", age: 25}
-]
+import { users } from "../db";
 
 const messageHello = "Bonjour le monde"
 
+// Resolver => QUERY => GET METHOD; MUTATION => POST, PUT, DELETE METHODS
 const resolvers = {
     Query: {
         hello: (parent, args, context, info) => messageHello,
         users: () => users,
-        user: (parent, {id}) => users.find(user => user.id == id)
+        user: (parent, { id }) => users.find(user => user.id == id)
     },
     Mutation: {
+        // Create an user
         createUser: (parent, { id, name, email, age }) => {
             let checkID = users.findIndex(user => user.id == id)
             if (checkID == -1) {
@@ -23,15 +21,23 @@ const resolvers = {
                 throw new Error('ID already exist!')
             }
         },
+        // Delete an user
         deleteUser: (parent, { id }) => {
             let checkID = users.findIndex(user => user.id == id)
             if (checkID != -1) {
                 users.splice(checkID, 1)
-            let checkID = users.findIndex(user => user.id == id)
                 return true
             } else {
                 throw new Error('Unknown ID')
             }
+        },
+        // Update an user
+        updateUser: (parent, { id, name, email, age}) => {
+            let newUser = users.find(user => user.id == id)
+            newUser.name = name
+            newUser.email = email
+            newUser.age = age
+            return newUser
         }
     }
 };
