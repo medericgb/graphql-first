@@ -38,7 +38,7 @@ const resolvers = {
             newUser.email = email
             newUser.age = age
             return newUser
-        }
+        } 
     }
 };
 
