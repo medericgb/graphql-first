@@ -1,6 +1,6 @@
 import { users } from "../db";
 
-const messageHello = "Bonjour le monde"
+const messageHello = "Salut les amis !"
 
 // Resolver => QUERY => GET METHOD; MUTATION => POST, PUT, DELETE METHODS
 const resolvers = {
