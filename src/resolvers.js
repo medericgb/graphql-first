@@ -2,7 +2,8 @@ import { users } from "../db";
 
 const messageHello = "Salut les amis !"
 
-// Resolver => QUERY => GET METHOD; MUTATION => POST, PUT, DELETE METHODS
+// Resolver => Query => Get method
+// Mutation => Post, Put, Delete methods
 const resolvers = {
     Query: {
         hello: (parent, args, context, info) => messageHello,
@@ -32,13 +33,13 @@ const resolvers = {
             }
         },
         // Update an user
-        updateUser: (parent, { id, name, email, age}) => {
+        updateUser: (parent, { id, name, email, age }) => {
             let newUser = users.find(user => user.id == id)
             newUser.name = name
             newUser.email = email
             newUser.age = age
             return newUser
-        } 
+        }
     }
 };
 
